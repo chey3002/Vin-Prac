@@ -74,9 +74,9 @@ Base de datos:
 
 ### Backend:
 - Se optó por MariaDB, ya que es una base de datos SQL muy similar a MYSQL la cual es abierta, y fácil  de utilizar. (XAMP)
-  - Para realizar esta conección se utilizó el paquete [mysql2](https://www.npmjs.com/package/mysql2), el cual permite realizar consultas asincronas.
-- De forma predeterminada, Next.js incluye su propio servidor con "next start". Si tiene un backend existente, aún puede usarlo con Next.js (este no es un servidor personalizado). Un servidor Next.js personalizado le permite iniciar un servidor 100% programáticamente para usar patrones de servidor personalizados. La mayoría de las veces, no necesitará esto, pero está disponible para una personalización completa. de momento se utilizará el backend de next.js
+De forma predeterminada, Next.js incluye su propio servidor con "next start". Si tiene un backend existente, aún puede usarlo con Next.js (este no es un servidor personalizado). Un servidor Next.js personalizado le permite iniciar un servidor 100% programáticamente para usar patrones de servidor personalizados. La mayoría de las veces, no necesitará esto, pero está disponible para una personalización completa. de momento se utilizará el backend de next.js
 esta será una REST api, la cual se conectará con la base de datos.
+## Detailed Design
 ## Detailed Design
 
 ### Diagrama entidad relación
