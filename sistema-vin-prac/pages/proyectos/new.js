@@ -1,10 +1,10 @@
 import MenuWrapper from '@/components/sidebar'
 import React from 'react'
-import EstudianteForm from '@/components/estudiantesForm';
+import ProyectoForm from '@/components/proyectoForm';
 export default function NewEstudiante() {
   return (
     <MenuWrapper >
-      <EstudianteForm/>
+      <ProyectoForm/>
     </MenuWrapper>
     
   )

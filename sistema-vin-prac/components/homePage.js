@@ -4,7 +4,8 @@ import remarkGfm from 'remark-gfm'
 
 export default function HomePage() {
   const [mdText, setMdText] = React.useState("")
-  fetch("/DesignDocument.md").then(response => response.text()).then(text => { setMdText(text) })
+  
+  fetch(process.env.BASE_URL+"/DesignDocument.md").then(response => response.text()).then(text => { setMdText(text) })
   return (
       <>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>

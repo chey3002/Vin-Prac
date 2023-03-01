@@ -86,7 +86,7 @@ export default function MenuWrapper({ children }) {
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                         <div style={{ flex: 1, marginBottom: '32px' }}>
                             <Menu menuItemStyles={menuItemStyles}>
-                                <Link href="/" ><div style={{ display: "grid", justifyContent: "center" }}><Image src={logo} width="200"></Image> </div></Link>
+                                <Link href="/" ><div style={{ display: "grid", justifyContent: "center" }}><Image src={logo} width="200" alt="UcacueLogo"></Image> </div></Link>
                                 <SubMenu label="Estudiantes">
                                     <MenuItem component={<Link href="/estudiantes/" />}>Listar</MenuItem>
                                     <MenuItem component={<Link href="/estudiantes/new" />}>Crear</MenuItem>
@@ -101,7 +101,7 @@ export default function MenuWrapper({ children }) {
                     </div>
                 </Sidebar>
                 <main style={{ height: "100vh", width: "100%", overflow: "auto" }}>
-                    <Container>
+                    <Container style={{ marginTop: "50px" }}>
                         {children}
                     </Container>
                 </main>

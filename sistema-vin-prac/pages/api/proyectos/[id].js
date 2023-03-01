@@ -4,9 +4,9 @@ export default async function handler(req, resp) {
     
     switch (req.method) {
         case "GET":
-            return await getEstudiantes(req, resp);
+            return await getProyecto(req, resp);
         case "DELETE":
-            return await deleteEstudiantes( req, resp);
+            return await deleteProyecto( req, resp);
         default:
             break;
         
@@ -14,9 +14,9 @@ export default async function handler(req, resp) {
    
 }
 
-const getEstudiantes = async (req, resp) => {
+const getProyecto = async (req, resp) => {
     const { id } = req.query;
-    const [result] = await pool.query(`SELECT * FROM estudiantes WHERE cedula = "${id}"`);
+    const [result] = await pool.query(`SELECT * FROM proyectos WHERE id = "${id}"`);
 
     if (result.length === 0) {
         return resp.status(200).json(null)
@@ -26,9 +26,9 @@ const getEstudiantes = async (req, resp) => {
     }
 }
 
-const deleteEstudiantes = async (req, resp) => {
+const deleteProyecto = async (req, resp) => {
     const { id } = req.query;
-    const result = await pool.query(`DELETE FROM estudiantes WHERE cedula = "${id}"`);
+    const result = await pool.query(`DELETE FROM proyectos WHERE id = "${id}"`);
     console.log(result);
     return resp.status(204).json()
 }
