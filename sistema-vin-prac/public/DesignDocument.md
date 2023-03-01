@@ -68,15 +68,24 @@ La semaforización es solo cambiar un estilo de css, así que no debería ser mu
     - tailwind: permite crear diseños bastante vistosos con facilidad, pero resulta bastante verboso, y puede llegar a confundir si alguien quiere revisar el código posteriormente.
     - react-bootstrap: Es un set de componentes de react, basado en bootstrap, el cual permite crear interfaces con gran facilidad y rapidez.
     - chacraUI: es similar a react-bootstrap pero aparentemente cuenta con menor comunidad lo cual puede retrasar el desarrollo
-- finalmente se decidió  utilizar **react-bootstrap** junto a estilos de css puro para algunos detalles.
+- finalmente se decidió  utilizar **react-bootstrap** junto a estilos de css puro para algunos detalles. Para realizar la lectura de los formularios se realizará con el sigueinte [video](https://www.youtube.com/watch?v=PCZ-ByiRxT8)
 - adicionalmente se decidió  utilizar [react-pro-sidebar](https://www.npmjs.com/package/react-pro-sidebar) para una parte de la ui ya que permite generar un menú  lateral de forma sencilla
-Base de datos:
+#### Paleta de colores:
+![paleta de colores](./Recursos/Shades%20of%20Wine%20Color%20Palette%20-%20color-hex.com.png)
+
+ | Hex     | RGB         |
+ |---------|-------------|
+ | #b9282c | (185,40,44) |
+ | #9e2233 | (158,34,51) |
+ | #841b3a | (132,27,58) |
+ | #691540 | (105,21,64) |
+ | #4e0e47 | (78,14,71) |
 
 ### Backend:
 - Se optó por MariaDB, ya que es una base de datos SQL muy similar a MYSQL la cual es abierta, y fácil  de utilizar. (XAMP)
-De forma predeterminada, Next.js incluye su propio servidor con "next start". Si tiene un backend existente, aún puede usarlo con Next.js (este no es un servidor personalizado). Un servidor Next.js personalizado le permite iniciar un servidor 100% programáticamente para usar patrones de servidor personalizados. La mayoría de las veces, no necesitará esto, pero está disponible para una personalización completa. de momento se utilizará el backend de next.js
+  - Para realizar esta conección se utilizó el paquete [mysql2](https://www.npmjs.com/package/mysql2), el cual permite realizar consultas asincronas.
+- De forma predeterminada, Next.js incluye su propio servidor con "next start". Si tiene un backend existente, aún puede usarlo con Next.js (este no es un servidor personalizado). Un servidor Next.js personalizado le permite iniciar un servidor 100% programáticamente para usar patrones de servidor personalizados. La mayoría de las veces, no necesitará esto, pero está disponible para una personalización completa. de momento se utilizará el backend de next.js
 esta será una REST api, la cual se conectará con la base de datos.
-## Detailed Design
 ## Detailed Design
 
 ### Diagrama entidad relación
