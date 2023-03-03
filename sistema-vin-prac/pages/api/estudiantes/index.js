@@ -12,17 +12,20 @@ export default async function  handler(req, res) {
 }
 
 const getEstudiantes = async (req, res) => {
+
+    console.log(req.query)
+    
     const [result] = await pool.query('SELECT * FROM estudiantes')
     return res.status(200).json(result);
 }
 
 const saveEstudiante = async (req, res) => {
-    const { nroCedula, ciclo, nombreCompleto } = req.body;
+    const { cedula, ciclo, nombre_completo } = req.body;
     try {
         const [result] = await pool.query('INSERT INTO estudiantes SET?', {
-            cedula: nroCedula,
+            cedula,
             ciclo,
-            nombre_completo: nombreCompleto
+            nombre_completo
         })
 
     } catch (error) {

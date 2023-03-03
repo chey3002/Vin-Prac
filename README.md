@@ -70,6 +70,7 @@ La semaforización es solo cambiar un estilo de css, así que no debería ser mu
     - chacraUI: es similar a react-bootstrap pero aparentemente cuenta con menor comunidad lo cual puede retrasar el desarrollo
 - finalmente se decidió  utilizar **react-bootstrap** junto a estilos de css puro para algunos detalles. Para realizar la lectura de los formularios se realizará con el sigueinte [video](https://www.youtube.com/watch?v=PCZ-ByiRxT8)
 - adicionalmente se decidió  utilizar [react-pro-sidebar](https://www.npmjs.com/package/react-pro-sidebar) para una parte de la ui ya que permite generar un menú  lateral de forma sencilla
+- Para realizar un dropdown con 
 #### Paleta de colores:
 ![paleta de colores](./Recursos/Shades%20of%20Wine%20Color%20Palette%20-%20color-hex.com.png)
 

@@ -1,3 +1,27 @@
-*{
-    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+* {
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+}
+/* unvisited link */
+a:link {
+    color: #b9282c;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #841b3a;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: #691540;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: #4e0e47;
+    text-decoration: underline;
 }

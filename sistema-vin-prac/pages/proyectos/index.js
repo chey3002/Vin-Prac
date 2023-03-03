@@ -13,9 +13,10 @@ export default function IndexProyecto({ proyectos }) {
           <Card style={{ margin: "10px 0 10px 0" }} key={proyecto.id}>
             <Link href={`/proyectos/${proyecto.id}`}>
               <h1>
-                {proyecto.instituciones_o_empresas}
+                Institución: {proyecto.instituciones_o_empresas}
               </h1>
             </Link>
+            <p>id:{proyecto.id}</p>
               <p>catedra_integradora:{proyecto.catedra_integradora}</p>
               <p>proyecto_integrador:{proyecto.proyecto_integrador}</p>
               <p>proyecto_servicio_comunitario:{proyecto.proyecto_servicio_comunitario}</p>

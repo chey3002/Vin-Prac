@@ -95,6 +95,10 @@ export default function MenuWrapper({ children }) {
                                     <MenuItem component={<Link href="/proyectos/" />}>Listar</MenuItem>
                                     <MenuItem component={<Link href="/proyectos/new" />}>Crear</MenuItem>
                                 </SubMenu>
+                                <SubMenu label="Asignaciones">
+                                    <MenuItem component={<Link href="/estudiantes_proyectos/" />}>Listar</MenuItem>
+                                    <MenuItem component={<Link href="/estudiantes_proyectos/new" />}>Crear</MenuItem>
+                                </SubMenu>
                             </Menu>
 
                         </div>

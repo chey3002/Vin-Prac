@@ -20,6 +20,7 @@
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.5",
     "react-pro-sidebar": "^1.0.0",
+    "react-select": "^5.7.0",
     "rehype-highlight": "^6.0.0",
     "remark-gfm": "^3.0.1"
   }
