@@ -15,7 +15,7 @@ export default function EstudianteDetailPager({ estudiante_proyecto }) {
     return (
         <MenuWrapper>
             {estudiante_proyecto ?
-                (<Card style={{ padding: "10px", display: "flex", width: "450px", margin: "10px 0 10px 0", border: bordeSemaforizado(estudiante_proyecto.fecha_limite) }}>
+                (<Card style={{ padding: "10px", display: "flex", width: "450px", margin: "10px 0 10px 0", border:`3px solid ${bordeSemaforizado(estudiante_proyecto.fecha_limite).color}` }}>
                     <h1>
                         {estudiante_proyecto.estudiantes.nombre_completo}
                     </h1>

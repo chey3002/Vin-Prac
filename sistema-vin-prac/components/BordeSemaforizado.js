@@ -11,17 +11,24 @@ export function bordeSemaforizado (fecha_limite){
     var semana = 7 * 24 * 60 * 60 * 1000; // 604800000
     var tresDias = 3 * 24 * 60 * 60 * 1000; // 259200000
     var unDia = 24 * 60 * 60 * 1000; //86400000
-    let border = ""
+    let color = ""
+    let tag=""
     // Comparar la diferencia con los valores definidos
     console.log(dif)
 
     if (dif > semana) {
-        border = "2px solid green"
+        tag = "+Semana"
+        color = "green"
     } else if (dif > tresDias) {
-        border = "2px solid orange"
+        tag = "+Tres días"
+        color = "orange"
     } else {
-        border = "2px solid red"
+        tag = "poco tiempo"
+        color = "red"
     }
-    return border;
+    return {
+        color,
+        tag
+    };
 
 }

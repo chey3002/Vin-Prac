@@ -1,15 +1,29 @@
 import MenuWrapper from '@/components/sidebar'
 import axios from 'axios'
-import Link from 'next/link'
 import React from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
+import { proyectosColumns } from '@/config/columnas'
+import { Table, Input } from 'antd'
+import { useTableSearch } from '@/config/useTableSearch'
 
+const fetchEstudiantes = async () => {
+  const { data } = await axios.get(process.env['BASE_URL'] + 'api/proyectos')
 
-export default function IndexProyecto({ proyectos }) {
+  return { data };
+};
+
+export default function IndexProyecto() {
+  const [searchVal, setSearchVal] = React.useState(null);
+
+  const { filteredData, loading } = useTableSearch({
+    searchVal,
+    retrieve: fetchEstudiantes
+  });
+
   return (
     <>
       <MenuWrapper >
-        {proyectos.map((proyecto) => (
+        {/* {proyectos.map((proyecto) => (
           <Card style={{ margin: "10px 0 10px 0" }} key={proyecto.id}>
             <Link href={`/proyectos/${proyecto.id}`}>
               <h1>
@@ -29,18 +43,24 @@ export default function IndexProyecto({ proyectos }) {
               <p>tipo_de_proyecto:{proyecto.tipo_de_proyecto}</p>
           </Card>
         ))
-        }
+        } */}
+        <h1>Proyectos</h1>
+        <Card>
+          <Input
+            onChange={e => setSearchVal(e.target.value)}
+            placeholder="Buscar"
+            enterButton
+            style={{ position: "sticky" }}
+          />
+          <Table
+            dataSource={filteredData}
+            columns={proyectosColumns}
+            loading={loading}
+            pagination={{ defaultPageSize: 10, showSizeChanger: false, pageSizeOptions: ['10', '20', '30'] }}
+          />
+        </Card>
       </MenuWrapper>
     </>
 
   )
-}
-export const getServerSideProps = async (context) => {
-  const res = await axios.get(process.env['HOST'] + 'api/proyectos')
-
-  return {
-    props: {
-      proyectos: res.data
-    }
-  }
 }

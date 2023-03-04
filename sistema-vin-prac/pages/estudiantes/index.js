@@ -1,15 +1,26 @@
 import MenuWrapper from '@/components/sidebar'
+import { Table, Input } from 'antd'
 import axios from 'axios'
-import Link from 'next/link'
 import React from 'react'
 import { Card } from 'react-bootstrap'
+import { estudiantesColumns } from '@/config/columnas'
+import { useTableSearch } from '@/config/useTableSearch'
+const fetchEstudiantes = async () => {
+  const { data } = await axios.get(process.env['BASE_URL'] + 'api/estudiantes')
 
+  return { data };
+};
+export default function IndexEstudiante() {
+  const [searchVal, setSearchVal] = React.useState(null);
 
-export default function IndexEstudiante({ estudiantes }) {
+  const { filteredData, loading } = useTableSearch({
+    searchVal,
+    retrieve: fetchEstudiantes
+  });
   return (
     <>
       <MenuWrapper >
-        {estudiantes.map((estudiante) => (
+        {/* {estudiantes.map((estudiante) => (
           <Card style={{ margin: "10px 0 10px 0" }} key={estudiante.cedula}>
             <Link href={`/estudiantes/${estudiante.cedula}`}>
               <h1>
@@ -20,18 +31,24 @@ export default function IndexEstudiante({ estudiantes }) {
             <p>Ciclo: <span>{estudiante.ciclo}</span></p>
           </Card>
         ))
-        }
+        } */}
+        <h1>Estudiantes</h1>
+        <Card style={{ padding: "10px" }}>
+          <Input
+            onChange={e => setSearchVal(e.target.value)}
+            placeholder="Buscar"
+
+            enterButton
+            style={{ position: "sticky" }}
+          />
+          <Table
+            dataSource={filteredData}
+            columns={estudiantesColumns}
+            loading={loading}
+            pagination={{ defaultPageSize: 10, showSizeChanger: false, pageSizeOptions: ['10', '20', '30'] }}
+          />        </Card>
       </MenuWrapper>
     </>
 
   )
-}
-export const getServerSideProps = async (context) => {
-  const res = await axios.get(process.env['HOST'] + 'api/estudiantes')
-
-  return {
-    props: {
-      estudiantes: res.data
-    }
-  }
 }

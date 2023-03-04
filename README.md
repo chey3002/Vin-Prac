@@ -3,7 +3,7 @@ Author(s): [Carlos Valladarez](https://github.com/chey3002)
 
 Status: Draft
 
-Última actualización: 2023-02-27
+Última actualización: 2023-Marzo-04
 
 Repositorio: [Github](https://github.com/chey3002/Vin-Prac)
 
@@ -29,13 +29,13 @@ se busca automatizar los documentos 31, 32, y 39 por parte de los docentes, para
 
 
 ## Goals
-- Crear un crud de estudiantes y de proyectos, diferenciando cuando sea uno de practicas, y uno de vinculación
-- Crear una funcionalidad en la cual subiendo un archivo csv, o excel se creen de forma automática los estudiantes
-- Asignar estudiantes a los diferentes proyectos
-- Generar documentos con los datos de los estudiantes (31,32 y 39)
-- Guardar documentos subidos por los estudiantes y docentes encargados (32-39)
-- Semaforizar a los estudiantes para representar de forma visual que no se a entregado aun la documentación correspondiente, poniendo en verde si se encuentra a más de una semana de la fecha pactada, amarillo, si es de una semana a 3 días, y rojo para los 3 ultimos días, o si se pasaron de tiempo
-- Descargar dichos documentos
+[x] Crear un crud de estudiantes y de proyectos, diferenciando cuando sea uno de practicas, y uno de vinculación
+[ ] Crear una funcionalidad en la cual subiendo un archivo csv, o excel se creen de forma automática los estudiantes
+[ ] Asignar estudiantes a los diferentes proyectos
+[ ] Generar documentos con los datos de los estudiantes (31,32 y 39)
+[ ] Guardar documentos subidos por los estudiantes y docentes encargados (32-39)
+[x] Semaforizar a los estudiantes para representar de forma visual que no se a entregado aun la documentación correspondiente, poniendo en verde si se encuentra a más de una semana de la fecha pactada, amarillo, si es de una semana a 3 días, y rojo para los 3 ultimos días, o si se pasaron de tiempo
+[ ] Descargar dichos documentos
 
 ## Non-Goals
 - Automatizar completamente el proceso, el objetivo del proyecto es agilizar el proceso, mas nó automatizarlos por completo
@@ -69,8 +69,10 @@ La semaforización es solo cambiar un estilo de css, así que no debería ser mu
     - react-bootstrap: Es un set de componentes de react, basado en bootstrap, el cual permite crear interfaces con gran facilidad y rapidez.
     - chacraUI: es similar a react-bootstrap pero aparentemente cuenta con menor comunidad lo cual puede retrasar el desarrollo
 - finalmente se decidió  utilizar **react-bootstrap** junto a estilos de css puro para algunos detalles. Para realizar la lectura de los formularios se realizará con el sigueinte [video](https://www.youtube.com/watch?v=PCZ-ByiRxT8)
+- Para las tables se utilizará [Ant Design](https://www.npmjs.com/package/antd) ya que permite realizar tablas basandonos en json de forma sumamente sencilla.
 - adicionalmente se decidió  utilizar [react-pro-sidebar](https://www.npmjs.com/package/react-pro-sidebar) para una parte de la ui ya que permite generar un menú  lateral de forma sencilla
-- Para realizar un dropdown con 
+- Para realizar un dropdown con busqueda se utilizo la librería [React Select](https://react-select.com/home)
+
 #### Paleta de colores:
 ![paleta de colores](./Recursos/Shades%20of%20Wine%20Color%20Palette%20-%20color-hex.com.png)
 
@@ -85,8 +87,7 @@ La semaforización es solo cambiar un estilo de css, así que no debería ser mu
 ### Backend:
 - Se optó por MariaDB, ya que es una base de datos SQL muy similar a MYSQL la cual es abierta, y fácil  de utilizar. (XAMP)
   - Para realizar esta conección se utilizó el paquete [mysql2](https://www.npmjs.com/package/mysql2), el cual permite realizar consultas asincronas.
-- De forma predeterminada, Next.js incluye su propio servidor con "next start". Si tiene un backend existente, aún puede usarlo con Next.js (este no es un servidor personalizado). Un servidor Next.js personalizado le permite iniciar un servidor 100% programáticamente para usar patrones de servidor personalizados. La mayoría de las veces, no necesitará esto, pero está disponible para una personalización completa. de momento se utilizará el backend de next.js
-esta será una REST api, la cual se conectará con la base de datos.
+- De forma predeterminada, Next.js incluye su propio servidor con "next start". Si tiene un backend existente, aún puede usarlo con Next.js (este no es un servidor personalizado). Un servidor Next.js personalizado le permite iniciar un servidor 100% programáticamente para usar patrones de servidor personalizados. La mayoría de las veces, no necesitará esto, pero está disponible para una personalización completa. Se utilizará el backend de next.js, esta será una REST api, la cual se conectará con la base de datos.
 ## Detailed Design
 
 ### Diagrama entidad relación
@@ -95,3 +96,24 @@ esta será una REST api, la cual se conectará con la base de datos.
 ## Consideraciones
 - La siguiente persona que tenga que encargarse del proyecto  deberá aprender React.js y Next.js así como un poco de bootstrap para poder utilizar los componentes de react bootstrap con facilidad, ya que son tecnologías que personalmente no he visto sean vistas en la universidad, pero son tecnologías que son muy buenas y bastante utilizadas a nivel mundial por lo cual vale la pena el esfuerzo extra.
 
+## Avances:
+### Semana 1
+Se realizaron las siguientes actividades:
+- Se realizó el documento de diseño, así como se diseño la base de datos
+- Se implementó la interfaz gráfica básica
+![interfaz](Recursos/interfaz%20b%C3%A1sica.png)
+- Se Creó un crud de estudiantes, proyectos, y las asignaciones de estudiantes a proyectos (Backend, y frontend)
+- Se implementó la semaforización de las asignaciones por fecha
+- Se implementó una barra de busqueda para las tablas del crud.
+#### Estudiantes:
+![interfaz](Recursos/Estudiantes1.png)
+![interfaz](Recursos/Estudiantes2.png)
+![interfaz](Recursos/Estudiantes3.png)
+#### Proyectos:
+![interfaz](Recursos/Proyectos1.png)
+![interfaz](Recursos/Proyectos2.png)
+![interfaz](Recursos/Proyectos3.png)
+#### Asignaciones:
+![interfaz](Recursos/Asignaciones1.png)
+![interfaz](Recursos/Asignaciones2.png)
+![interfaz](Recursos/Asignaciones3.png)
