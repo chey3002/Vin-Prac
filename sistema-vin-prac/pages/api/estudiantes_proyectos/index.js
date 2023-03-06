@@ -12,8 +12,14 @@ export default async function  handler(req, res) {
 }
 
 const getEstudiantesProyectos = async (req, res) => {
-    const [result] = await pool.query('SELECT * FROM estudiantes_proyectos JOIN estudiantes ON estudiantes_proyectos.cedula = estudiantes.cedula JOIN proyectos ON estudiantes_proyectos.id_proyecto = proyectos.id; ')
-    return res.status(200).json(result);
+    try {
+        const [result] = await pool.query('SELECT * FROM estudiantes_proyectos JOIN estudiantes ON estudiantes_proyectos.cedula = estudiantes.cedula JOIN proyectos ON estudiantes_proyectos.id_proyecto = proyectos.id; ')
+        return res.status(200).json(result);
+    } catch (error) {
+        return resp.status(500).json(error)
+    }
+
+    
 }
 
 const saveEstudianteProyecto = async (req, res) => {
@@ -25,7 +31,7 @@ const saveEstudianteProyecto = async (req, res) => {
             fecha_limite
         })
     } catch (error) {
-        return res.status(500).json("Error:" + error.sqlState + " " + error.sqlMessage);
+        return resp.status(500).json(error)
     }
 
     return res.status(200).json("Estudiante Proyecto registrado con exito");

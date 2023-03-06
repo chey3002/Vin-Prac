@@ -13,8 +13,7 @@ export default function NewEstudiante({ estudiantes, proyectos }) {
 export const getServerSideProps = async (context) => {
   const estudiantes = await axios.get(process.env['HOST'] + 'api/estudiantes')
   const proyectos = await axios.get(process.env['HOST'] + 'api/proyectos')
-  console.log(estudiantes.data)
-  console.log(proyectos.data)
+
 
   return {
     props: {

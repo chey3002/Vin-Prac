@@ -24,26 +24,11 @@ export default function IndexEstudiante() {
   return (
     <>
       <MenuWrapper >
-        {/* {estudiantes_proyectos.map((estudiante_proyecto) => (
-          <Card style={{ margin: "10px 0 10px 0", border: bordeSemaforizado(estudiante_proyecto.fecha_limite) }} key={estudiante_proyecto.id_ep}>
-            <Link href={`/estudiantes_proyectos/${estudiante_proyecto.id_ep}`}>
-              <h1>
-                {estudiante_proyecto.cedula}
-              </h1>
-            </Link>
-            <h1>{estudiante_proyecto.nombre_completo}</h1>
-            <p>id_proyecto:{estudiante_proyecto.id_proyecto}</p>
-            <p>id:{estudiante_proyecto.id_ep}</p>
-            <p>Fecha limite:{(new Date(Date.parse(estudiante_proyecto.fecha_limite))).toLocaleString()}</p>
-          </Card>
-        ))
-        } */}
+
         <h1>Asignaciones</h1>
           <Input
             onChange={e => setSearchVal(e.target.value)}
-            placeholder="Buscar"
-
-            enterButton
+            placeholder="Buscar"            
             style={{ position: "sticky" }}
           />
           <Table

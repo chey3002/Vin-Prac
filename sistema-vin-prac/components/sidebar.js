@@ -76,8 +76,9 @@ export default function MenuWrapper({ children }) {
                 display: 'flex', height: "100vh", position: "sticky"
             }}>
                 <Sidebar
+                    width="200px"
                     image="https://static.vecteezy.com/system/resources/thumbnails/013/449/642/original/abstract-high-tech-database-glowing-background-digital-technology-circuit-board-bg-3d-loop-animation-futuristic-digital-abstract-motion-graphics-abstract-futuristic-data-analysis-background-free-video.jpg"
-                    breakPoint="lg"
+                    breakPoint="none"
                     backgroundColor={hexToRgba(themes[theme].sidebar.backgroundColor, 0.9)}
                     rootStyles={{
                         color: themes[theme].sidebar.color,

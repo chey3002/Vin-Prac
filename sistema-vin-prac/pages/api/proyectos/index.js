@@ -12,8 +12,13 @@ export default async function handler(req, res) {
 }
 
 const getProyectos = async (req, res) => {
-    const [result] = await pool.query('SELECT * FROM proyectos')
-    return res.status(200).json(result);
+    try {
+        const [result] = await pool.query('SELECT * FROM proyectos')
+        return res.status(200).json(result);
+    } catch (error) {
+        return resp.status(500).json(error)
+    }
+    
 }
 
 const saveProyectos = async (req, res) => {
@@ -30,8 +35,6 @@ const saveProyectos = async (req, res) => {
         encargado_en_la_empresa,
         tipo_de_proyecto,
     } = req.body;
-    console.log(req.body)
-
     try {
         const [result] = await pool.query('INSERT INTO proyectos SET?', {
             catedra_integradora,
@@ -47,8 +50,7 @@ const saveProyectos = async (req, res) => {
             tipo_de_proyecto,
         })
     } catch (error) {
-        //el estudiante ya existe
-        return res.status(500).json("Error:" + error.sqlState + " " + error.sqlMessage);
+        return resp.status(500).json(error)
     }
     return res.status(200).json("Proyecto registrado con exito");
 }

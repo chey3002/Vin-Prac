@@ -10,11 +10,10 @@ export default function ProyectoDetailPager({ proyecto }) {
         const res = await axios.delete(`/api/proyectos/${proyecto.id}`)
         router.push("/proyectos")
     }
-    console.log(proyecto);
     return (
         <MenuWrapper>
             {proyecto ?
-                (<Card style={{padding:"10px", display: "flex",width:"450px" , margin: "10px 0 10px 0" }} key={proyecto.cedula}>
+                (<Card style={{padding:"10px", display: "flex" , margin: "10px 0 10px 0" }} key={proyecto.cedula}>
                     <h1>
                         {proyecto.instituciones_o_empresas}
                     </h1>

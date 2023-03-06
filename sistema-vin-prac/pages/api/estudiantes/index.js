@@ -13,10 +13,14 @@ export default async function  handler(req, res) {
 
 const getEstudiantes = async (req, res) => {
 
-    console.log(req.query)
+    try {
+        const [result] = await pool.query('SELECT * FROM estudiantes')
+        return res.status(200).json(result);
+    } catch (error) {
+        return resp.status(500).json(error)
+
+    }    
     
-    const [result] = await pool.query('SELECT * FROM estudiantes')
-    return res.status(200).json(result);
 }
 
 const saveEstudiante = async (req, res) => {
@@ -34,7 +38,7 @@ const saveEstudiante = async (req, res) => {
             return res.status(299).json("El estudiante ya ha sido registrado");
 
         } else {
-            return res.status(500).json("Error:" + error.sqlState + " " + error.sqlMessage);
+            return resp.status(500).json(error)
         }
     }
 

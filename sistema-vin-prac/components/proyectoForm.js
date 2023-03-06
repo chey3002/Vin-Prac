@@ -54,7 +54,6 @@ export default function ProyectoForm({ proyectoFetch }) {
     useEffect(() => {
         if (router.query.id) {
             setProyecto({ ...proyectoFetch })
-            console.log(proyectoFetch);
         }
 
     }, [])

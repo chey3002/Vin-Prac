@@ -14,7 +14,7 @@ export default function EstudianteDetailPager({ estudiante }) {
     return (
         <MenuWrapper>
             {estudiante ?
-                (<Card style={{padding:"10px", display: "flex",width:"450px" , margin: "10px 0 10px 0" }} key={estudiante.cedula}>
+                (<Card style={{padding:"10px", display: "flex" , margin: "10px 0 10px 0" }} key={estudiante.cedula}>
                     <h1>
                         {estudiante.cedula}
                     </h1>

@@ -14,7 +14,6 @@ export function bordeSemaforizado (fecha_limite){
     let color = ""
     let tag=""
     // Comparar la diferencia con los valores definidos
-    console.log(dif)
 
     if (dif > semana) {
         tag = "+Semana"

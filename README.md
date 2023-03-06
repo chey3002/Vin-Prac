@@ -33,15 +33,15 @@ se busca automatizar los documentos 31, 32, y 39 por parte de los docentes, para
 
 [ ] Crear una funcionalidad en la cual subiendo un archivo csv, o excel se creen de forma automática los estudiantes
 
-[ ] Asignar estudiantes a los diferentes proyectos
+[x] Asignar estudiantes a los diferentes proyectos
 
 [ ] Generar documentos con los datos de los estudiantes (31,32 y 39)
 
-[ ] Guardar documentos subidos por los estudiantes y docentes encargados (32-39)
+[X] Guardar documentos subidos por los estudiantes y docentes encargados (32-39)
 
 [x] Semaforizar a los estudiantes para representar de forma visual que no se a entregado aun la documentación correspondiente, poniendo en verde si se encuentra a más de una semana de la fecha pactada, amarillo, si es de una semana a 3 días, y rojo para los 3 ultimos días, o si se pasaron de tiempo
 
-[ ] Descargar dichos documentos
+[X] Descargar dichos documentos
 
 ## Non-Goals
 - Automatizar completamente el proceso, el objetivo del proyecto es agilizar el proceso, mas nó automatizarlos por completo

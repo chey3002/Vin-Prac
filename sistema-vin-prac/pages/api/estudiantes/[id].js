@@ -27,7 +27,7 @@ const getEstudiantes = async (req, resp) => {
             return resp.status(200).json(result)
         }
     } catch (error) {
-        console.log(error);
+        return resp.status(500).json(error)
     }
 }
 
@@ -35,10 +35,9 @@ const deleteEstudiantes = async (req, resp) => {
     const { id } = req.query;
     try {
         const result = await pool.query(`DELETE FROM estudiantes WHERE cedula = "${id}"`);
-        console.log(result);
         return resp.status(204).json()
     } catch (error) {
-        console.log(error);
+        return resp.status(500).json(error)
     }
 }
 const updateEstudiantes = async (req, resp) => {
@@ -47,7 +46,7 @@ const updateEstudiantes = async (req, resp) => {
         const [result] = await pool.query("Update estudiantes SET ? where cedula = ?", [req.body, id]);
         return resp.status(204).json()
     } catch (error) {
-        console.log(error);
+        return resp.status(500).json(error)
     }
 
 
