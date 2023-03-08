@@ -24,12 +24,13 @@ const getEstudiantes = async (req, res) => {
 }
 
 const saveEstudiante = async (req, res) => {
-    const { cedula, ciclo, nombre_completo } = req.body;
+    const { cedula, ciclo, nombre_completo, unidad_academica } = req.body;
     try {
         const [result] = await pool.query('INSERT INTO estudiantes SET?', {
             cedula,
             ciclo,
-            nombre_completo
+            nombre_completo,
+            unidad_academica
         })
 
     } catch (error) {

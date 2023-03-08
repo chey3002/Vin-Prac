@@ -183,14 +183,29 @@ export const getServerSideProps = async (context) => {
             }
         }
     }
-    const files = await fs.readdir(path.join(process.cwd(), "/public/files/" + estudiantes_proyectos.data[0].cedula));
-    const estudiantes = await axios.get(process.env['HOST'] + 'api/estudiantes/' + estudiantes_proyectos.data[0].cedula)
-    const proyectos = await axios.get(process.env['HOST'] + 'api/proyectos/' + estudiantes_proyectos.data[0].id_proyecto)
 
-    return {
-        props: {
-            estudiante_proyecto: { ...estudiantes_proyectos.data[0], estudiantes: estudiantes.data[0], proyectos: proyectos.data[0] },
-            dirs: files
+    try {
+        const files = await fs.readdir(path.join(process.cwd(), "/public/files/" + estudiantes_proyectos.data[0].cedula));
+        const estudiantes = await axios.get(process.env['HOST'] + 'api/estudiantes/' + estudiantes_proyectos.data[0].cedula)
+        const proyectos = await axios.get(process.env['HOST'] + 'api/proyectos/' + estudiantes_proyectos.data[0].id_proyecto)
+
+        return {
+            props: {
+                estudiante_proyecto: { ...estudiantes_proyectos.data[0], estudiantes: estudiantes.data[0], proyectos: proyectos.data[0] },
+                dirs: files
+            }
+        }
+    } catch (error) {
+        await fs.mkdir(path.join(process.cwd(), "/public/files/" + estudiantes_proyectos.data[0].cedula));
+        const estudiantes = await axios.get(process.env['HOST'] + 'api/estudiantes/' + estudiantes_proyectos.data[0].cedula)
+        const proyectos = await axios.get(process.env['HOST'] + 'api/proyectos/' + estudiantes_proyectos.data[0].id_proyecto)
+
+        return {
+            props: {
+                estudiante_proyecto: { ...estudiantes_proyectos.data[0], estudiantes: estudiantes.data[0], proyectos: proyectos.data[0] },
+                dirs: []
+            }
         }
     }
+    
 }

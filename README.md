@@ -3,7 +3,7 @@ Author(s): [Carlos Valladarez](https://github.com/chey3002)
 
 Status: Draft
 
-Última actualización: 2023-Marzo-04
+Última actualización: 2023-Marzo-07
 
 Repositorio: [Github](https://github.com/chey3002/Vin-Prac)
 
@@ -15,7 +15,6 @@ Repositorio: [Github](https://github.com/chey3002/Vin-Prac)
 - Overview
 - Tecnologías a utilizar
 - Detailed Design
-
 - Consideraciones
 
 
@@ -64,7 +63,10 @@ los archivos a subir tendrán el siguiente formato [Nro de documento]-[Número d
 "39-0105599385-CarlosAlbertoValladarezBriones.doc" para ser localizados con mayor facilidad. La forma de subir los archivos al servidor y guardarlos quedará temporalmente **pospuesto** hasta que se realice esta parte. Una vez subidos los archivos hay que exponerlos para su posterior descarga.
 
 La semaforización es solo cambiar un estilo de css, así que no debería ser muy complicado.
-
+## Instalación
+1) cd sistema-vin-prac
+2) npm install
+3) npm run dev
 
 ## Tecnologías a utilizar
 
@@ -97,7 +99,13 @@ La semaforización es solo cambiar un estilo de css, así que no debería ser mu
 ## Detailed Design
 
 ### Diagrama entidad relación
-![entidad relación](Recursos/Diagrama%20entidad%20relación.png)
+![entidad relación](Recursos/Diagrama%20entidad%20relaci%C3%B3n-final.png)
+### Instrucciones para crear un archivo csv
+1) El archivo debe tener en la primera fila los campos: "cedula",	"nombre_completo",	"ciclo", y	"unidad_academica"
+2) La columna cedula debe tener como formato Texto
+![paso 2](Recursos/instrucciones%201.png)
+3) Para guardar el archivo debemos ir a guardar como, y al momento de guardar el archivo debemos poner en **Tipo** "CSV UTF-8 (delimitado por comas)"
+![paso 3](Recursos/instrucciones%202.png)
 
 ## Consideraciones
 - La siguiente persona que tenga que encargarse del proyecto  deberá aprender React.js y Next.js así como un poco de bootstrap para poder utilizar los componentes de react bootstrap con facilidad, ya que son tecnologías que personalmente no he visto sean vistas en la universidad, pero son tecnologías que son muy buenas y bastante utilizadas a nivel mundial por lo cual vale la pena el esfuerzo extra.

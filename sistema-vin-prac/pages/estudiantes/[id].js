@@ -15,11 +15,12 @@ export default function EstudianteDetailPager({ estudiante }) {
         <MenuWrapper>
             {estudiante ?
                 (<Card style={{padding:"10px", display: "flex" , margin: "10px 0 10px 0" }} key={estudiante.cedula}>
-                    <h1>
+                    <h2>
                         {estudiante.cedula}
-                    </h1>
+                    </h2>
                     <p>{estudiante.nombre_completo}</p>
                     <p>Ciclo: <span>{estudiante.ciclo}</span></p>
+                    <p>Unidad académica: <span>{estudiante.unidad_academica}</span></p>
                     <Button size="lg" variant="danger" onClick={handleDelete}>
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">

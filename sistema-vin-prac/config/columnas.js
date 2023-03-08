@@ -22,6 +22,11 @@ export const estudiantesColumns = [
         dataIndex: 'nombre_completo',
         key: 'nombre_completo',
     },
+    {
+        title: 'Unidad académica',
+        dataIndex: 'unidad_academica',
+        key: 'unidad_academica',
+    },
 ];
 export const proyectosColumns = [
     {

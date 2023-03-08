@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-03-2023 a las 14:47:28
+-- Tiempo de generación: 07-03-2023 a las 16:44:11
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -30,15 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `estudiantes` (
   `cedula` varchar(255) NOT NULL,
   `ciclo` int(2) NOT NULL,
-  `nombre_completo` varchar(255) NOT NULL
+  `nombre_completo` varchar(255) NOT NULL,
+  `unidad_academica` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `estudiantes`
---
-
-INSERT INTO `estudiantes` (`cedula`, `ciclo`, `nombre_completo`) VALUES
-('0105599385', 5, 'Carlos Valladarez');
 
 -- --------------------------------------------------------
 
@@ -47,7 +41,7 @@ INSERT INTO `estudiantes` (`cedula`, `ciclo`, `nombre_completo`) VALUES
 --
 
 CREATE TABLE `estudiantes_proyectos` (
-  `id` int(11) NOT NULL,
+  `id_ep` int(11) NOT NULL,
   `cedula` varchar(255) NOT NULL,
   `id_proyecto` int(11) NOT NULL,
   `fecha_de_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -89,7 +83,7 @@ ALTER TABLE `estudiantes`
 -- Indices de la tabla `estudiantes_proyectos`
 --
 ALTER TABLE `estudiantes_proyectos`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_ep`),
   ADD KEY `cedula` (`cedula`),
   ADD KEY `id_proyecto` (`id_proyecto`);
 
@@ -107,13 +101,13 @@ ALTER TABLE `proyectos`
 -- AUTO_INCREMENT de la tabla `estudiantes_proyectos`
 --
 ALTER TABLE `estudiantes_proyectos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ep` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas

@@ -20,18 +20,7 @@ export default function IndexEstudiante() {
   return (
     <>
       <MenuWrapper >
-        {/* {estudiantes.map((estudiante) => (
-          <Card style={{ margin: "10px 0 10px 0" }} key={estudiante.cedula}>
-            <Link href={`/estudiantes/${estudiante.cedula}`}>
-              <h1>
-                {estudiante.cedula}
-              </h1>
-            </Link>
-            <p>{estudiante.nombre_completo}</p>
-            <p>Ciclo: <span>{estudiante.ciclo}</span></p>
-          </Card>
-        ))
-        } */}
+        
         <h1>Estudiantes</h1>
         <Card style={{ padding: "10px" }}>
           <Input
