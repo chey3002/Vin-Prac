@@ -26,8 +26,6 @@ export default function IndexEstudiante() {
           <Input
             onChange={e => setSearchVal(e.target.value)}
             placeholder="Buscar"
-
-            enterButton
             style={{ position: "sticky" }}
           />
           <Table

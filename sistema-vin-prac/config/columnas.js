@@ -1,7 +1,59 @@
 import { bordeSemaforizado } from "@/components/BordeSemaforizado";
-import { Tag } from "antd";
+import { Button, Input, Tag } from "antd";
 import Link from "next/link";
+import { SearchOutlined } from "@ant-design/icons";
 
+const setFilter = (filter) => {
+    
+    return {
+        filterDropdown: ({
+            setSelectedKeys,
+            selectedKeys,
+            confirm,
+            clearFilters,
+        }) => {
+            return (
+                <>
+                    <Input
+                        autoFocus
+                        placeholder="Type text here"
+                        value={selectedKeys[0]}
+                        onChange={(e) => {
+                            setSelectedKeys(e.target.value ? [e.target.value] : []);
+                            confirm({ closeDropdown: false });
+                        }}
+                        onPressEnter={() => {
+                            confirm();
+                        }}
+                        onBlur={() => {
+                            confirm();
+                        }}
+                    ></Input>
+                    <Button
+                        onClick={() => {
+                            confirm();
+                        }}
+                        type="primary"
+                    >
+                        Search
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            clearFilters();
+                        }}
+                        type="danger"
+                    >
+                        Reset
+                    </Button>
+                </>
+            );
+        },
+        filterIcon: () => {
+            return <SearchOutlined />;
+        },
+        onFilter: filter
+    }
+}
 export const estudiantesColumns = [
     {
         title: 'Cedula 🔗',
@@ -96,21 +148,30 @@ export const proyectosColumns = [
 ];
 export const estudiantesProyectosColumns = [
     {
-        title: 'id 🔗',
+        title: 'id',
         dataIndex: 'id_ep',
         key: 'id_ep',
         render: (text) => <Link href={`/estudiantes_proyectos/${text}`}>
             {text}
         </Link>,
-
+        ...setFilter(
+            (value, record) => {
+                return record.id_ep.toString().includes(value.toLowerCase());
+        
+        })
     },
     {
-        title: 'Cedula 🔗',
+        title: 'Cedula',
         dataIndex: 'cedula',
         key: 'cedula',
         render: (text) => <Link href={`/estudiantes/${text}`}>
             {text}
         </Link>,
+        ...setFilter(
+            (value, record) => {
+                return record.cedula.toLowerCase().includes(value.toLowerCase());
+
+            })
 
     },
 
@@ -118,57 +179,96 @@ export const estudiantesProyectosColumns = [
         title: 'Nombre Completo',
         dataIndex: 'nombre_completo',
         key: 'nombre_completo',
+        ...setFilter(
+            (value, record) => {
+                return record.nombre_completo.toLowerCase().includes(value.toLowerCase());
+
+            })
     },
     {
-        title: 'Proyecto 🔗',
-        dataIndex: 'id',
-        key: 'id',
+        title: 'Proyecto',
+        dataIndex: 'id_proyecto',
+        key: 'id_proyecto',
         render: (text) => <Link href={`/proyectos/${text}`}>
             {text}
         </Link>,
+        ...setFilter(
+            (value, record) => {
+                return record.id.toString().includes(value.toLowerCase());
+
+            })
 
     },
     {
         title: 'Numero de horas de practicas',
         dataIndex: 'numero_de_horas_de_practicas',
         key: 'numero_de_horas_de_practicas',
-    },
-    {
-        title: 'Actividades a realizar',
-        dataIndex: 'actividades_a_realizar',
-        key: 'actividades_a_realizar',
+        ...setFilter(
+            (value, record) => {
+                return record.numero_de_horas_de_practicas.toString().includes(value.toLowerCase());
+
+            })
     },
     {
         title: 'Docente Tutor',
         dataIndex: 'docente_tutor',
         key: 'docente_tutor',
+        ...setFilter(
+            (value, record) => {
+                return record.docente_tutor.toLowerCase().includes(value.toLowerCase());
+
+            })
     },
     {
         title: 'Instituciones o empresas',
         dataIndex: 'instituciones_o_empresas',
         key: 'instituciones_o_empresas',
+        ...setFilter(
+            (value, record) => {
+                return record.instituciones_o_empresas.toLowerCase().includes(value.toLowerCase());
+
+            })
     },
     {
         title: 'Propuesta en la que va a participar',
         dataIndex: 'propuesta_en_la_que_va_a_participar',
         key: 'propuesta_en_la_que_va_a_participar',
+        ...setFilter(
+            (value, record) => {
+                return record.propuesta_en_la_que_va_a_participar.toLowerCase().includes(value.toLowerCase());
+
+            })
     },
     {
         title: 'Encargado en la empresa',
         dataIndex: 'encargado_en_la_empresa',
         key: 'encargado_en_la_empresa',
+        ...setFilter(
+            (value, record) => {
+                return record.encargado_en_la_empresa.toLowerCase().includes(value.toLowerCase());
+
+            })
     },
     {
         title: 'Tipo de proyecto',
         dataIndex: 'tipo_de_proyecto',
         key: 'tipo_de_proyecto',
+        ...setFilter(
+            (value, record) => {
+                return record.tipo_de_proyecto.toLowerCase().includes(value.toLowerCase());
+
+            })
     },
     {
         title: 'Fecha limite',
         dataIndex: 'fecha_limite',
         key: 'fecha_limite',
-        render: (text) => <span style={{ border: bordeSemaforizado(text) }}>{(new Date(Date.parse(text))).toLocaleString() }</span>,
-        
+        render: (text) => <span style={{ border: bordeSemaforizado(text) }}>{(new Date(Date.parse(text))).toLocaleDateString() }</span>,
+        ...setFilter(
+            (value, record) => {
+                return record.fecha_limite.toLowerCase().includes(value.toLowerCase());
+
+            })
     },
     {
         title: "Estado",
@@ -183,6 +283,7 @@ export const estudiantesProyectosColumns = [
                 </Tag>
             )
         }
+        
         
 
     }

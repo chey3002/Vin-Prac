@@ -7,6 +7,7 @@ import { Button, Card, Col, Form, ListGroup, Row } from 'react-bootstrap'
 import fs from "fs/promises";
 import path from "path"
 import Link from 'next/link';
+import Documento32 from './documento32';
 
 export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
     const [uploading, setUploading] = React.useState({
@@ -29,12 +30,11 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
     const handleUploading = async (tipoDoc) => {
 
         try {
-            console.log(uploading);
             setUploading({ ...uploading, [tipoDoc]: true });
             if (!selectedFile) {
                 setUploading({ ...uploading, [tipoDoc]: false });
                 return
-            };
+            }
             const formData = new FormData();
             formData.append('file', selectedFile);
             console.log(uploading);
@@ -45,10 +45,8 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
                 router.replace(router.asPath);
                 return res.data;
             })
-            console.log(uploading);
 
         } catch (error) {
-            console.log(uploading);
             console.log(error);
 
         }
@@ -114,6 +112,16 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
                         <h2>
                             Archivos
                         </h2>
+                        <Row>
+                            <Col>
+                                <Button variant='success'>
+                                    Generar Documento 32
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Documento32 />
+                        </Row>
                         {[32, 33, 34, 35, 36, 37, 38, 39].map((i) => (
                             <Row key={i}>
                                 <h3>Documento {i}</h3>
@@ -166,7 +174,9 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
                         ))}
 
 
-                    </Card></>) :
+                    </Card>
+                
+                </>) :
                 <h1>Estudiante Proyectos no encontrado</h1>}
 
         </MenuWrapper>

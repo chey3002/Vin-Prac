@@ -3,7 +3,7 @@ Author(s): [Carlos Valladarez](https://github.com/chey3002)
 
 Status: Draft
 
-Última actualización: 2023-Marzo-07
+Última actualización: 2023-Marzo-08
 
 Repositorio: [Github](https://github.com/chey3002/Vin-Prac)
 
@@ -52,15 +52,15 @@ Actualmente los procesos de generación, revisión y entrega de la documentació
 
 ## Overview
 Para empezar debemos realizar los crud tanto de estudiantes como de proyectos, dada la estructura que se nos presenta considero que lo más conveniente es utilizar una base de datos relacional, ya que una no relacional realmente no hace sentido.
-Para leer el archivo de excel podemos utilizar la librería
- [XSLX](https://www.npmjs.com/package/xlsx) en este [vídeo](https://www.youtube.com/watch?v=N42gydeIoQA) podemos observar como se hace el fetch de estos datos.
+Para leer el archivo se optó por utilizar la librería
+ [convert-csv-to-json](https://www.npmjs.com/package/convert-csv-to-json?activeTab=readme), este nos permite leer el archivo csv, y transformarlo al formato json deseado de forma muy sencilla, además de esto permite realizar la misma acción con el texto plano del csv lo cual permite cumplir facilmente nuestro objetivo.
 En cuanto a la asignación de estudiantes se puede realizar una tabla para esto, ya que es una relación n a n, simplemente juntando el id del estudiante, su cédula, con el id del proyecto.
-para generar el archivo excel podemos realizarlo de forma sencilla utilizando la librería [react-export-excel](https://www.npmjs.com/package/react-export-excel) como se ve en el siguiente [vídeo](https://www.youtube.com/watch?v=FisPSnksObo)
+para generar el archivo excel podemos realizarlo utilizando la librería [xlsx](https://www.npmjs.com/package/react-export-excel) como se ve en el siguiente [vídeo](https://www.youtube.com/watch?v=F7dQLO5Jhp4)
 
-En cuanto a los archivos de word no se ha encontrado una forma de crearlos,lo más sencillo sería generar archivos txt con el texto solo para que los estudiantes copien y peguen esta información en sus documentos, pero esto queda **pospuesto para ser revisado posteriormente.**
+En cuanto a los archivos de word se encontró, la librería [docx.js](https://www.npmjs.com/package/docx), el cual permite generar documentos de word (docx) con un de arbol de onjetos, la [documentación](https://docx.js.org/#/?id=welcome) realmente es bastante buena y contiene bastantes ejemplos de como utilizarlo.
 
 los archivos a subir tendrán el siguiente formato [Nro de documento]-[Número de cédula del estudiante]-[nombre completo del estudiante].doc, por ejemplo:
-"39-0105599385-CarlosAlbertoValladarezBriones.doc" para ser localizados con mayor facilidad. La forma de subir los archivos al servidor y guardarlos quedará temporalmente **pospuesto** hasta que se realice esta parte. Una vez subidos los archivos hay que exponerlos para su posterior descarga.
+"39-0105599385-CarlosAlbertoValladarezBriones.doc" para ser localizados con mayor facilidad. los archivos se subiran a la carpreta public del proyecto. Una vez subidos los archivos hay que exponerlos para su posterior descarga.
 
 La semaforización es solo cambiar un estilo de css, así que no debería ser muy complicado.
 ## Instalación
@@ -77,8 +77,8 @@ La semaforización es solo cambiar un estilo de css, así que no debería ser mu
     - react-bootstrap: Es un set de componentes de react, basado en bootstrap, el cual permite crear interfaces con gran facilidad y rapidez.
     - chacraUI: es similar a react-bootstrap pero aparentemente cuenta con menor comunidad lo cual puede retrasar el desarrollo
 - finalmente se decidió  utilizar **react-bootstrap** junto a estilos de css puro para algunos detalles. Para realizar la lectura de los formularios se realizará con el sigueinte [video](https://www.youtube.com/watch?v=PCZ-ByiRxT8)
-- Para las tables se utilizará [Ant Design](https://www.npmjs.com/package/antd) ya que permite realizar tablas basandonos en json de forma sumamente sencilla.
-- adicionalmente se decidió  utilizar [react-pro-sidebar](https://www.npmjs.com/package/react-pro-sidebar) para una parte de la ui ya que permite generar un menú  lateral de forma sencilla
+- Para las tables se utilizará [Ant Design](https://www.npmjs.com/package/antd) ya que permite realizar tablas basandonos en json, utilizando otro json que nos permite especificar las columnas de la tabla.
+- adicionalmente se decidió  utilizar [react-pro-sidebar](https://www.npmjs.com/package/react-pro-sidebar) para una parte de la ui ya que permite generar un menú  lateral sin mucha dificultad.
 - Para realizar un dropdown con busqueda se utilizo la librería [React Select](https://react-select.com/home)
 
 #### Paleta de colores:
