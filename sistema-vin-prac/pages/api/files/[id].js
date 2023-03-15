@@ -38,8 +38,17 @@ const handler = async (req, res) => {
     } catch (error) {
         await fs.mkdir(path.join(process.cwd() + "/public", "/files/" + cedula))
     }
-    await readFile(req, true,id)
-    res.json({ done: "ok" })
+    try {
+        await readFile(req, true, id)
+        res.json({ done: "ok" })
+    } catch (error) {
+        return res.status(500).json({
+            code: "500",
+            message: "Error al crear el archivo",
+        });
+    }
+    
+    
 }
 
 export default handler

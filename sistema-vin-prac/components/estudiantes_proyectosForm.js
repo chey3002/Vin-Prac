@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
-export default function EstudianteProyectoForm({ estudiantes, proyectos, estudiante_proyectoFetch }) {
+export default function EstudianteProyectoForm({ estudiantes, proyectos, estudiante_proyectoFetch, errorAlert, setError }) {
 
     const [estudiante_proyecto, setEstudianteProyecto] = useState({
         cedula:"",
@@ -21,13 +21,31 @@ export default function EstudianteProyectoForm({ estudiantes, proyectos, estudia
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (router.query.id) {
-            const res = await axios.put('/api/estudiantes_proyectos/' + router.query.id, estudiante_proyecto);
-        } else {
-            const res = await axios.post('/api/estudiantes_proyectos', estudiante_proyecto)
+        try {
+            if (router.query.id) {
+                const res = await axios.put('/api/estudiantes_proyectos/' + router.query.id, estudiante_proyecto);
+            } else {
+                const res = await axios.post('/api/estudiantes_proyectos', estudiante_proyecto)
+            }
+            router.push("/estudiantes_proyectos")
+        } catch (error) {
+            if (Object.entries(error.response.data).length === 0) {
+                console.log(error);
+                setError({
+                    ...errorAlert,
+                    code: error.code,
+                    message: error.message,
+                    show: true,
+                })
+            } else {
+                setError({
+                    ...errorAlert,
+                    code: error.response.data.code,
+                    message: error.response.data.message,
+                    show: true,
+                })
+            }
         }
-        router.push("/estudiantes_proyectos")
 
     }
      
@@ -54,6 +72,8 @@ export default function EstudianteProyectoForm({ estudiantes, proyectos, estudia
             setEstudianteProyecto({ ...estudiante_proyectoFetch })
         }
     }, [])
+
+    console.log(proyectosSelect.find((opcion) => opcion.value === estudiante_proyectoFetch?.id_proyecto));
     return (
         <Card style={{ padding: "10px" }}>
             <h2>Ingresar nuevo estudiante_proyecto</h2>
@@ -91,7 +111,7 @@ export default function EstudianteProyectoForm({ estudiantes, proyectos, estudia
                     <Form.Control defaultValue={estudiante_proyectoFetch?.fecha_limite.slice(0, 10)} name="fecha_limite" type="date" onChange={handleChange} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    {router.query.id ? "Editar" : "Crear"}
+                    {router.query.id ? "Editar" : "Registrar"}
 
                 </Button>
             </Form>

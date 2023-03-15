@@ -1,7 +1,7 @@
 import { pool } from "@/config/db";
 
 export default async function handler(req, resp) {
-    
+
     switch (req.method) {
         case "GET":
             return await getEstudiantesProyectos(req, resp);
@@ -11,9 +11,9 @@ export default async function handler(req, resp) {
             return await updateEstudiantesProyectos(req, resp);
         default:
             break;
-        
+
     }
-   
+
 }
 
 const getEstudiantesProyectos = async (req, resp) => {
@@ -31,11 +31,13 @@ const getEstudiantesProyectos = async (req, resp) => {
             return resp.status(200).json(result)
         }
     } catch (error) {
-        return resp.status(500).json(error)
+        return resp.status(500).json({
+            code: error.sqlState,
+            message: error.sqlMessage,
+        });
+    }
 
-    }    
-    
-    
+
 }
 
 const deleteEstudiantesProyectos = async (req, resp) => {
@@ -45,9 +47,12 @@ const deleteEstudiantesProyectos = async (req, resp) => {
         const result = await pool.query(`DELETE FROM estudiantes_proyectos WHERE id_ep = "${id}"`);
         return resp.status(204).json()
     } catch (error) {
-        return resp.status(500).json(error)
+        return resp.status(500).json({
+            code: error.sqlState,
+            message: error.sqlMessage,
+        });
     }
-    
+
 }
 const updateEstudiantesProyectos = async (req, resp) => {
     const { id } = req.query;
@@ -55,7 +60,10 @@ const updateEstudiantesProyectos = async (req, resp) => {
         const [result] = await pool.query("Update estudiantes_proyectos SET ? where id_ep = ?", [req.body, id]);
         return resp.status(204).json()
     } catch (error) {
-        return resp.status(500).json(error)
+        return resp.status(500).json({
+            code: error.sqlState,
+            message: error.sqlMessage,
+        });
     }
 
 

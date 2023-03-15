@@ -2,35 +2,66 @@ import MenuWrapper from '@/components/sidebar'
 import React from 'react'
 import EstudianteForm from '@/components/estudiantesForm';
 import csvToJson from 'convert-csv-to-json';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Alert, Button, Card, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import AlertHandler from '@/components/AlertHandler';
 export default function NewEstudiante() {
   const router = useRouter();
   const [urlFile, setUrlFile] = React.useState("");
   const [selectedFile, setSelectedFile] = React.useState();
+
+
+  const [errorAlert, setError] = React.useState({
+    code: "",
+    message: "",
+    show: false,
+  })
   const handleFile = async () => {
     try {
       if (!selectedFile) return;
-
-      console.log(urlFile);
       const { data } = await axios.get(urlFile)
-      console.log(data);
       const csvFile = csvToJson.utf8Encoding().fieldDelimiter(',').supportQuotedField(true).csvStringToJson(data)
       csvFile.map(async (row) => {
         const res = await axios.post('/api/estudiantes', row)
+        router.push("/estudiantes")
+        
       })
-      router.push("/estudiantes")
+      
     } catch (error) {
-      console.log(error);
+      if (Object.entries(error.response.data).length === 0) {
+        console.log(error);
+        setError({
+          ...errorAlert,
+          code: error.code,
+          message: error.message,
+          show: true,
+        })
+      } else {
+        setError({
+          ...errorAlert,
+          code: error.response.data.code,
+          message: error.response.data.message,
+          show: true,
+        })
+      }
     }
 
 
   }
   return (
     <MenuWrapper >
-      <EstudianteForm />
+      {errorAlert.show ?
+
+        <Alert variant="danger" onClose={() => setError({ ...errorAlert, show: false })} dismissible>
+          <Alert.Heading>Error: {errorAlert.code}</Alert.Heading>
+          <p>
+            {errorAlert.message}
+          </p>
+        </Alert> : ""
+      }
+      <EstudianteForm errorAlert={errorAlert} setError={ setError} />
       <br />
       <Card>
         <h2>Subida por lotes</h2>

@@ -2,11 +2,27 @@ import MenuWrapper from '@/components/sidebar'
 import React from 'react'
 import axios from 'axios';
 import EstudianteProyectoForm from '@/components/estudiantes_proyectosForm';
+import { Alert } from 'react-bootstrap';
 export default function EditEstudiantesProyectos({ estudiantes, proyectos, estudiantes_proyectos }) {
+    const [errorAlert, setError] = React.useState({
+        code: "",
+        message: "",
+        show: false,
+    })
     return (
+        
         <MenuWrapper >
+            {errorAlert.show ?
+
+                <Alert variant="danger" onClose={() => setError({ ...errorAlert, show: false })} dismissible>
+                    <Alert.Heading>Error: {errorAlert.code}</Alert.Heading>
+                    <p>
+                        {errorAlert.message}
+                    </p>
+                </Alert> : ""
+            }
             {estudiantes_proyectos ?
-                <EstudianteProyectoForm estudiantes={estudiantes} proyectos={proyectos} estudiante_proyectoFetch={estudiantes_proyectos} />
+                <EstudianteProyectoForm estudiantes={estudiantes} proyectos={proyectos} estudiante_proyectoFetch={estudiantes_proyectos} errorAlert={errorAlert} setError={setError} />
                 :
                 <h1>Proyecto no encontrado</h1>
             }

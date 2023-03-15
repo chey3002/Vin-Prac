@@ -11,7 +11,9 @@ export default async function handler(req, res) {
         await fs.readdir(path.join(process.cwd() + "/public", "/files/" + cedula))
         await fs.unlink(path.join( process.cwd() + "/public", "/files/" + cedula+"/"+item))
     } catch (error) {
-        res.status(500).send(error)
-    }
+        return res.status(500).json({
+            code: error.sqlState,
+            message: error.sqlMessage,
+        });    }
     res.json({ done: "ok" })
 }

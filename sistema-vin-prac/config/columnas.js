@@ -1,4 +1,4 @@
-import { bordeSemaforizado } from "@/components/BordeSemaforizado";
+import { Semaforizacion } from "@/components/Semaforizacion";
 import { Button, Input, Tag } from "antd";
 import Link from "next/link";
 import { SearchOutlined } from "@ant-design/icons";
@@ -56,7 +56,7 @@ const setFilter = (filter) => {
 }
 export const estudiantesColumns = [
     {
-        title: 'Cedula 🔗',
+        title: 'Cédula 🔗',
         dataIndex: 'cedula',
         key: 'cedula',
         render: (text) => <Link href={`/estudiantes/${text}`}>
@@ -91,7 +91,7 @@ export const proyectosColumns = [
 
     },
     {
-        title: 'Catedra integradora',
+        title: 'Cátedra integradora',
         dataIndex: 'catedra_integradora',
         key: 'catedra_integradora',
     },
@@ -161,7 +161,7 @@ export const estudiantesProyectosColumns = [
         })
     },
     {
-        title: 'Cedula',
+        title: 'Cédula',
         dataIndex: 'cedula',
         key: 'cedula',
         render: (text) => <Link href={`/estudiantes/${text}`}>
@@ -263,7 +263,7 @@ export const estudiantesProyectosColumns = [
         title: 'Fecha limite',
         dataIndex: 'fecha_limite',
         key: 'fecha_limite',
-        render: (text) => <span style={{ border: bordeSemaforizado(text) }}>{(new Date(Date.parse(text))).toLocaleDateString() }</span>,
+        render: (text) => <span style={{ border: Semaforizacion(text) }}>{(new Date(Date.parse(text))).toLocaleDateString() }</span>,
         ...setFilter(
             (value, record) => {
                 return record.fecha_limite.toLowerCase().includes(value.toLowerCase());
@@ -275,7 +275,7 @@ export const estudiantesProyectosColumns = [
         dataIndex: "fecha_limite",
         key: "estado",
         render: (text) => {
-            const { tag, color } = bordeSemaforizado(text)
+            const { tag, color } = Semaforizacion(text)
             
             return (
                 <Tag color={color} >

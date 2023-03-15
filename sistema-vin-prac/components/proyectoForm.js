@@ -6,7 +6,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
-export default function ProyectoForm({ proyectoFetch }) {
+export default function ProyectoForm({ proyectoFetch, errorAlert, setError }) {
+    console.log(proyectoFetch);
     const [proyecto, setProyecto] = useState({
         catedra_integradora:"",
         proyecto_integrador: "",
@@ -29,13 +30,33 @@ export default function ProyectoForm({ proyectoFetch }) {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        if (router.query.id) { 
-            const res = await axios.put('/api/proyectos/' + router.query.id, proyecto);
-        } else {
-            const res = await axios.post('/api/proyectos', proyecto)
+        try {
+            if (router.query.id) {
+                const res = await axios.put('/api/proyectos/' + router.query.id, proyecto);
+            } else {
+                const res = await axios.post('/api/proyectos', proyecto)
+            }
+            router.push("/proyectos")
+        } catch (error) {
+            if (Object.entries(error.response.data).length === 0) {
+                console.log(error);
+                setError({
+                    ...errorAlert,
+                    code: error.code,
+                    message: error.message,
+                    show: true,
+                })
+            } else {
+                setError({
+                    ...errorAlert,
+                    code: error.response.data.code,
+                    message: error.response.data.message,
+                    show: true,
+                })
+            }
         }
-        router.push("/proyectos")
+
+        
 
 
     }
@@ -57,6 +78,7 @@ export default function ProyectoForm({ proyectoFetch }) {
         }
 
     }, [])
+    console.log((opcionesSelect.find((opcion) => opcion.label === proyecto?.tipo_de_proyecto)));
     return (
         <Card style={{ padding: "10px" }}>
             <h2>Ingresar nuevo proyecto</h2>
@@ -66,8 +88,8 @@ export default function ProyectoForm({ proyectoFetch }) {
                     < Form.Label >Instituciones o Empresas </ Form.Label >
                     < Form.Control defaultValue={proyecto.instituciones_o_empresas} name="instituciones_o_empresas" type="text " placeholder="Instituciones o Empresas " onChange={handleChange} /> </ Form.Group >
                 <Form.Group className="mb-3" controlId="formCedula">
-                    <Form.Label>catedra_integradora</Form.Label>
-                    <Form.Control defaultValue={proyecto.catedra_integradora} name="catedra_integradora" type="text" placeholder="catedra_integradora" onChange={handleChange} />
+                    <Form.Label>Cátedra integradora</Form.Label>
+                    <Form.Control defaultValue={proyecto.catedra_integradora} name="catedra_integradora" type="text" placeholder="Cátedra integradora" onChange={handleChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formProyectoIntegrador">
@@ -106,16 +128,15 @@ export default function ProyectoForm({ proyectoFetch }) {
                     <Form.Label>Tipo de Proyecto</Form.Label>
                     <Select defaultValue={
                         { 
-                            label: (opcionesSelect.find((opcion) => opcion.value === proyecto.proyectoFetch))?.label,
-                            value: (opcionesSelect.find((opcion) => opcion.value === proyecto.proyectoFetch))?.value
-
+                            label: (opcionesSelect.find((opcion) => opcion.value === proyectoFetch?.tipo_de_proyecto))?.label,
+                            value: (opcionesSelect.find((opcion) => opcion.value === proyectoFetch?.tipo_de_proyecto))?.value
                         }
                     }  onChange={handleChange} name="tipo_de_proyecto"
                         options={opcionesSelect} />
                     </ Form.Group >
 
                 <Button variant="primary" type="submit">
-                    {router.query.id ? "Editar" : "Crear"}
+                    {router.query.id ? "Editar" : "Registrar"}
                 </Button>
             </Form>
         </Card>

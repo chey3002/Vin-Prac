@@ -16,9 +16,12 @@ const getProyectos = async (req, res) => {
         const [result] = await pool.query('SELECT * FROM proyectos')
         return res.status(200).json(result);
     } catch (error) {
-        return resp.status(500).json(error)
+        return resp.status(500).json({
+            code: error.sqlState,
+            message: error.sqlMessage,
+        });
     }
-    
+
 }
 
 const saveProyectos = async (req, res) => {
@@ -50,7 +53,10 @@ const saveProyectos = async (req, res) => {
             tipo_de_proyecto,
         })
     } catch (error) {
-        return resp.status(500).json(error)
+        return resp.status(500).json({
+            code: error.sqlState,
+            message: error.sqlMessage,
+        });
     }
     return res.status(200).json("Proyecto registrado con exito");
 }
