@@ -6,7 +6,6 @@ import { Alert, Button, Card, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import AlertHandler from '@/components/AlertHandler';
 export default function NewEstudiante() {
   const router = useRouter();
   const [urlFile, setUrlFile] = React.useState("");
@@ -24,13 +23,35 @@ export default function NewEstudiante() {
       const { data } = await axios.get(urlFile)
       const csvFile = csvToJson.utf8Encoding().fieldDelimiter(',').supportQuotedField(true).csvStringToJson(data)
       csvFile.map(async (row) => {
-        const res = await axios.post('/api/estudiantes', row)
-        router.push("/estudiantes")
-        
+        try {
+          const res = await axios.post('/api/estudiantes', row)
+        } catch (error) {
+          if (Object.entries(error.response.data).length === 0) {
+            console.log("hay un error")
+
+            console.log(error);
+            setError({
+              ...errorAlert,
+              code: error.code,
+              message: error.message,
+              show: true,
+            })
+          } else {
+            console.log("hay un error")
+            setError({
+              ...errorAlert,
+              code: error.response.data.code,
+              message: error.response.data.message,
+              show: true,
+            })
+          }
+        }
       })
-      
+      router.push("/estudiantes")
     } catch (error) {
       if (Object.entries(error.response.data).length === 0) {
+        console.log("hay un error")
+
         console.log(error);
         setError({
           ...errorAlert,
@@ -39,6 +60,7 @@ export default function NewEstudiante() {
           show: true,
         })
       } else {
+        console.log("hay un error")
         setError({
           ...errorAlert,
           code: error.response.data.code,

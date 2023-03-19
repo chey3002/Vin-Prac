@@ -1,8 +1,6 @@
 # Sistema Vin-Prac
 Author(s): [Carlos Valladarez](https://github.com/chey3002)
 
-Status: Draft
-
 Última actualización: 2023-Marzo-15
 
 Repositorio: [Github](https://github.com/chey3002/Vin-Prac)

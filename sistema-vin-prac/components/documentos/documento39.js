@@ -16,7 +16,7 @@ export default function Documento39({ estudiante_proyecto }) {
     });
     const tipoDeDocumento = (estudiante_proyecto.proyectos.tipo_de_proyecto === "Practicas") ? "Prácticas Laborales" : "Servicio Comunitario"
     const handleChange = (e) => {
-        if (e.target.name === "fecha") {
+        if (e.target.name === "fecha" || e.target.name === "fechaInicio"|| e.target.name === "fechaFin") {
             setDocumentState({ ...documentState, [e.target.name]: e.target.value + "T12:00:00.000Z" })
         } else {
             setDocumentState({ ...documentState, [e.target.name]: e.target.value })
