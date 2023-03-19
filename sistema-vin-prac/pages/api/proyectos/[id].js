@@ -52,7 +52,7 @@ const updateProyecto = async (req, resp) => {
         const [result] = await pool.query('Update proyectos SET ? where id = ?', [req.body, id]);
         return resp.status(204).json()
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         return resp.status(500).json({
             code: error.sqlState,
             message: error.sqlMessage,

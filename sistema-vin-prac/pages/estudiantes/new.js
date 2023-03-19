@@ -27,9 +27,9 @@ export default function NewEstudiante() {
           const res = await axios.post('/api/estudiantes', row)
         } catch (error) {
           if (Object.entries(error.response.data).length === 0) {
-            console.log("hay un error")
+            //console.log("hay un error")
 
-            console.log(error);
+            //console.log(error);
             setError({
               ...errorAlert,
               code: error.code,
@@ -37,7 +37,7 @@ export default function NewEstudiante() {
               show: true,
             })
           } else {
-            console.log("hay un error")
+            //console.log("hay un error")
             setError({
               ...errorAlert,
               code: error.response.data.code,
@@ -50,9 +50,9 @@ export default function NewEstudiante() {
       router.push("/estudiantes")
     } catch (error) {
       if (Object.entries(error.response.data).length === 0) {
-        console.log("hay un error")
+        //console.log("hay un error")
 
-        console.log(error);
+        //console.log(error);
         setError({
           ...errorAlert,
           code: error.code,
@@ -60,7 +60,7 @@ export default function NewEstudiante() {
           show: true,
         })
       } else {
-        console.log("hay un error")
+        //console.log("hay un error")
         setError({
           ...errorAlert,
           code: error.response.data.code,
@@ -83,7 +83,7 @@ export default function NewEstudiante() {
           </p>
         </Alert> : ""
       }
-      <EstudianteForm errorAlert={errorAlert} setError={ setError} />
+      <EstudianteForm errorAlert={errorAlert} setError={setError} />
       <br />
       <Card>
         <h2>Subida por lotes</h2>
@@ -112,7 +112,7 @@ export default function NewEstudiante() {
                 <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
               </svg>
               Descargue la plantilla aquí!
-              
+
             </p>
           </Link>
         </div>

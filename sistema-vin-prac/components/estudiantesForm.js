@@ -5,14 +5,14 @@ import { Alert, Card } from 'react-bootstrap';
 import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-export default function EstudianteForm({ estudianteFetch,errorAlert,setError }) {
+export default function EstudianteForm({ estudianteFetch, errorAlert, setError }) {
     const [estudiante, setEstudiante] = useState({
         cedula: "",
         ciclo: "",
         nombre_completo: "",
         unidad_academica: ""
     })
-    
+
 
 
     const router = useRouter();
@@ -26,7 +26,7 @@ export default function EstudianteForm({ estudianteFetch,errorAlert,setError }) 
         try {
             if (router.query.id) {
                 const res = await axios.put('/api/estudiantes/' + router.query.id, estudiante)
-                console.log(res);
+                //console.log(res);
                 router.push("/estudiantes")
             }
             else {
@@ -35,7 +35,7 @@ export default function EstudianteForm({ estudianteFetch,errorAlert,setError }) 
             }
         } catch (error) {
             if (Object.entries(error.response.data).length === 0) {
-                console.log(error);
+                //console.log(error);
                 setError({
                     ...errorAlert,
                     code: error.code,
@@ -51,7 +51,7 @@ export default function EstudianteForm({ estudianteFetch,errorAlert,setError }) 
                 })
             }
         }
-        
+
 
     }
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function EstudianteForm({ estudianteFetch,errorAlert,setError }) 
 
     return (
         <Card style={{ padding: "10px" }}>
-            
+
             <h2>Ingresar nuevo estudiante</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formCedula">

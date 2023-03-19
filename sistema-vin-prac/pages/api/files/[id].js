@@ -14,9 +14,9 @@ const readFile = (req, saveLocally, id) => {
     if (saveLocally) {
         options.uploadDir = path.join(process.cwd(), "/public/files/" + cedula)
         options.filename = (name, ext, path, form) => {
-            console.log(name, ext, path)
+            //console.log(name, ext, path)
             const extension = path.originalFilename.split(".")[path.originalFilename.split(".").length - 1]
-            return id+ "." + extension;
+            return id + "." + extension;
         }
     }
     options.maxFileSize = 4000 * 1024 * 1024
@@ -31,10 +31,10 @@ const readFile = (req, saveLocally, id) => {
 
 const handler = async (req, res) => {
     const { id } = req.query;
-    const [id_ep, cedula,tipo] = id.split("_");//"1_0105599385_32"
-    
+    const [id_ep, cedula, tipo] = id.split("_");//"1_0105599385_32"
+
     try {
-        await fs.readdir(path.join(process.cwd() + "/public", "/files/"+cedula))
+        await fs.readdir(path.join(process.cwd() + "/public", "/files/" + cedula))
     } catch (error) {
         await fs.mkdir(path.join(process.cwd() + "/public", "/files/" + cedula))
     }
@@ -47,8 +47,8 @@ const handler = async (req, res) => {
             message: "Error al crear el archivo",
         });
     }
-    
-    
+
+
 }
 
 export default handler

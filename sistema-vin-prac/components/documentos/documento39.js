@@ -27,10 +27,11 @@ export default function Documento39({ estudiante_proyecto }) {
 
 
     const handleGenerateDoc = async () => {
-        if (documentState.fecha === "" || documentState.nombreRepresentanteLegal === "" || documentState.cargoRepresentanteLegal === "" || documentState.carrera === "" || documentState.directorDeCarrera === "" || documentState.nroOficio === "" || documentState.areaDePracticas === "") {
-            alert("Todos los campos son obligatorios para generar el documento 32")
+        if (documentState.carrera === "" || documentState.directorDeCarrera === "" || documentState.fecha === "" || documentState.fechaInicio === "" || documentState.fechaFin === "" || documentState.pronombreEstudiante === "" || documentState.matriz === "" || documentState.ciudad === "") {
+            alert("Todos los campos son obligatorios para generar el documento")
             return;
         }
+
         //llamo a las imágenes del documento
         const logo = await fetch(
             "/Recursos/Logo-UC.png"

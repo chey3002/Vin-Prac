@@ -3,22 +3,22 @@ import axios from 'axios'
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { estudiantesProyectosColumns } from '@/config/columnas'
-import { Table} from 'antd'
+import { Table } from 'antd'
 import * as XLSX from 'xlsx'
 
 export default function IndexEstudiante({ estudiantes_proyectos }) {
   const [filteredData, setFilteredData] = React.useState(estudiantes_proyectos);
 
-  const setupExcel = (data) => { 
+  const setupExcel = (data) => {
     const ExcelArray = [
       ["1.    DATOS GENERALES",],
       ["",],
-      ["Unidad Académica de:", data[0].unidad_academica, "", ],
-      ["Período Lectivo:", ],
-      ["Carrera:", ],
+      ["Unidad Académica de:", data[0].unidad_academica, "",],
+      ["Período Lectivo:",],
+      ["Carrera:",],
       ["Área: Práctica Laboral / Práctica de Servicio Comunitaria"],
-      ["Docente Responsable de Prácticas:", data[0].docente_tutor, ],
-      ["", ],];
+      ["Docente Responsable de Prácticas:", data[0].docente_tutor,],
+      ["",],];
     ExcelArray.push(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"])
     ExcelArray.push(["No.",
       "Ciclo", "Cátedra Integradora",
@@ -31,7 +31,7 @@ export default function IndexEstudiante({ estudiantes_proyectos }) {
       "Docente Tutor asignado por grupo de estudiantes",
       "Instituciones o Empresas",
       "Propuesta en la que va a participar"])
-    
+
     data.map((row, i) => (ExcelArray.push([
       i + 1,
       row.ciclo,
@@ -45,7 +45,7 @@ export default function IndexEstudiante({ estudiantes_proyectos }) {
       row.docente_tutor,
       row.instituciones_o_empresas,
       row.propuesta_en_la_que_va_a_participar])))
-    console.log(ExcelArray);
+    //console.log(ExcelArray);
     return ExcelArray;
   }
   const handleClick = () => {
@@ -53,8 +53,8 @@ export default function IndexEstudiante({ estudiantes_proyectos }) {
       alert("No hay datos para exportar");
 
       return;
-    } 
-    console.log(filteredData);
+    }
+    //console.log(filteredData);
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.aoa_to_sheet(setupExcel(filteredData));
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Documento31');
@@ -70,12 +70,12 @@ export default function IndexEstudiante({ estudiantes_proyectos }) {
           </svg>
           Exportar</Button>
 
-          <Table
+        <Table
           dataSource={estudiantes_proyectos}
           columns={estudiantesProyectosColumns}
           onChange={(pagination, filters, sorter, extra) => setFilteredData(extra.currentDataSource)}
           pagination={{ defaultPageSize: 10, showSizeChanger: false, pageSizeOptions: ['10', '20', '30'] }}
-          />       
+        />
       </MenuWrapper>
     </>
 

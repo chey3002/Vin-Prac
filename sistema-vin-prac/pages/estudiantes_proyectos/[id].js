@@ -9,6 +9,7 @@ import path from "path"
 import Link from 'next/link';
 import Documento32 from '../../components/documentos/documento32';
 import Documento39 from '@/components/documentos/documento39';
+import CartaCompromiso from '@/components/documentos/cartaCompromiso';
 
 export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
     const [uploading, setUploading] = React.useState({
@@ -43,9 +44,9 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
             }
             const formData = new FormData();
             formData.append('file', selectedFile);
-            console.log(uploading);
+            //console.log(uploading);
             const { data } = await axios.post("/api/files/" + estudiante_proyecto.id_ep + "_" + estudiante_proyecto.cedula + "_" + tipoDoc, formData).then(res => {
-                console.log(res.data);
+                //console.log(res.data);
                 setUploading({ ...uploading, [tipoDoc]: false });
                 setSelectedFile()
                 router.replace(router.asPath);
@@ -54,7 +55,7 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
 
         } catch (error) {
             if (Object.entries(error.response.data).length === 0) {
-                console.log(error);
+                //console.log(error);
                 setError({
                     ...errorAlert,
                     code: error.code,
@@ -79,7 +80,7 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
 
 
     const handleDeleteFile = async (item, tipoDoc) => {
-        console.log(item);
+        //console.log(item);
         try {
             const { data } = await axios.post("/api/files/delete/"
                 + estudiante_proyecto.id_ep + "_"
@@ -89,11 +90,11 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
                     router.replace(router.asPath);
                     return res.data;
                 })
-            console.log(data);
+            //console.log(data);
 
         } catch (error) {
             if (Object.entries(error.response.data).length === 0) {
-                console.log(error);
+                //console.log(error);
                 setError({
                     ...errorAlert,
                     code: error.code,
@@ -159,6 +160,11 @@ export default function EstudianteDetailPager({ estudiante_proyecto, dirs }) {
                         <h2>
                             Archivos
                         </h2>
+                        <Row>
+                            <Col>
+                                <CartaCompromiso estudiante_proyecto={estudiante_proyecto} />
+                            </Col>
+                        </Row>
                         <Row>
                             <Col>
                                 <Documento32 estudiante_proyecto={estudiante_proyecto} />

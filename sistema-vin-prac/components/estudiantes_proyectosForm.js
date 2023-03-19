@@ -9,7 +9,7 @@ import Select from 'react-select';
 export default function EstudianteProyectoForm({ estudiantes, proyectos, estudiante_proyectoFetch, errorAlert, setError }) {
 
     const [estudiante_proyecto, setEstudianteProyecto] = useState({
-        cedula:"",
+        cedula: "",
         id_proyecto: "",
         fecha_limite: ""
     })
@@ -30,7 +30,7 @@ export default function EstudianteProyectoForm({ estudiantes, proyectos, estudia
             router.push("/estudiantes_proyectos")
         } catch (error) {
             if (Object.entries(error.response.data).length === 0) {
-                console.log(error);
+                //console.log(error);
                 setError({
                     ...errorAlert,
                     code: error.code,
@@ -48,7 +48,7 @@ export default function EstudianteProyectoForm({ estudiantes, proyectos, estudia
         }
 
     }
-     
+
     const estudiantesSelect = estudiantes.map((estudiante) =>
     ({
         label: `${estudiante.cedula} | ${estudiante.nombre_completo}`,
@@ -73,7 +73,7 @@ export default function EstudianteProyectoForm({ estudiantes, proyectos, estudia
         }
     }, [])
 
-    console.log(proyectosSelect.find((opcion) => opcion.value === estudiante_proyectoFetch?.id_proyecto));
+    //console.log(proyectosSelect.find((opcion) => opcion.value === estudiante_proyectoFetch?.id_proyecto));
     return (
         <Card style={{ padding: "10px" }}>
             <h2>Ingresar nuevo estudiante_proyecto</h2>

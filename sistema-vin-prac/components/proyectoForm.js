@@ -7,9 +7,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 export default function ProyectoForm({ proyectoFetch, errorAlert, setError }) {
-    console.log(proyectoFetch);
+    //console.log(proyectoFetch);
     const [proyecto, setProyecto] = useState({
-        catedra_integradora:"",
+        catedra_integradora: "",
         proyecto_integrador: "",
         proyecto_servicio_comunitario: "",
         numero_de_horas_de_practicas: "",
@@ -24,7 +24,7 @@ export default function ProyectoForm({ proyectoFetch, errorAlert, setError }) {
     const router = useRouter();
 
     const handleChange = (e) => {
-        
+
         setProyecto({ ...proyecto, [e.target.name]: e.target.value })
 
     }
@@ -39,7 +39,7 @@ export default function ProyectoForm({ proyectoFetch, errorAlert, setError }) {
             router.push("/proyectos")
         } catch (error) {
             if (Object.entries(error.response.data).length === 0) {
-                console.log(error);
+                //console.log(error);
                 setError({
                     ...errorAlert,
                     code: error.code,
@@ -56,12 +56,12 @@ export default function ProyectoForm({ proyectoFetch, errorAlert, setError }) {
             }
         }
 
-        
+
 
 
     }
     const opciones = [{ label: "Practicas", value: "Practicas" },
-        { label: "Vinculación", value:"Vinculación"}
+    { label: "Vinculación", value: "Vinculación" }
     ]
     const opcionesSelect = opciones.map((option) =>
     ({
@@ -78,7 +78,7 @@ export default function ProyectoForm({ proyectoFetch, errorAlert, setError }) {
         }
 
     }, [])
-    console.log((opcionesSelect.find((opcion) => opcion.label === proyecto?.tipo_de_proyecto)));
+    //console.log((opcionesSelect.find((opcion) => opcion.label === proyecto?.tipo_de_proyecto)));
     return (
         <Card style={{ padding: "10px" }}>
             <h2>Ingresar nuevo proyecto</h2>
@@ -127,13 +127,13 @@ export default function ProyectoForm({ proyectoFetch, errorAlert, setError }) {
                 <Form.Group className="mb-3" controlId="formTipoDeProyecto">
                     <Form.Label>Tipo de Proyecto</Form.Label>
                     <Select defaultValue={
-                        { 
+                        {
                             label: (opcionesSelect.find((opcion) => opcion.value === proyectoFetch?.tipo_de_proyecto))?.label,
                             value: (opcionesSelect.find((opcion) => opcion.value === proyectoFetch?.tipo_de_proyecto))?.value
                         }
-                    }  onChange={handleChange} name="tipo_de_proyecto"
+                    } onChange={handleChange} name="tipo_de_proyecto"
                         options={opcionesSelect} />
-                    </ Form.Group >
+                </ Form.Group >
 
                 <Button variant="primary" type="submit">
                     {router.query.id ? "Editar" : "Registrar"}
